@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class JDBC02_execute_executeUpdate {
+public class JDBC02_Execute_ExecuteUpdate {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         /*
  	A) CREATE TABLE, DROP TABLE, ALTER TABLE gibi DDL ifadeleri icin sonuc kümesi (ResultSet)
