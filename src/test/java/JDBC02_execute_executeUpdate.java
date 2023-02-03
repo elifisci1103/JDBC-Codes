@@ -35,8 +35,8 @@ public class JDBC02_execute_executeUpdate {
           birim VARCHAR(10), maas int
 	    ========================================================================*/
        String createTable = "CREATE TABLE isciler" + "(id INT," +
-               "birim Varchar(10)," + "maas INT)";
-        System.out.println(st.execute(createTable));
+              "birim Varchar(10)," + "maas INT)";
+               System.out.println(st.execute(createTable));
 
         if(!st.execute(createTable)){
         System.out.println("İsciler tablosu oluşturuldu.");}
@@ -58,9 +58,9 @@ public class JDBC02_execute_executeUpdate {
         int count=0;
 
         for(String each : queries){
-          count += st.executeUpdate(each);}
+        count += st.executeUpdate(each);}
 
-         System.out.println(count + "satır eklendi");
+        System.out.println(count + "satır eklendi");
 
         // Ayri ayri sorgular ile veritabanina tekrar tekrar ulasmak islemlerin
         // yavas yapilmasina yol acar. 10000 tane veri kaydi yapildigi dusunuldugunde
@@ -76,21 +76,21 @@ public class JDBC02_execute_executeUpdate {
 
         String [] queries2 = {"INSERT INTO isciler VALUES(10, 'TEKNIK', 3000)",
                              "INSERT INTO isciler VALUES(20, 'KANTIN', 2000)",
-                             "INSERT INTO isciler VALUES(30, 'ARGE', 5000)"};
+                              "INSERT INTO isciler VALUES(30, 'ARGE', 5000)"};
 
-        for(String each : queries2){
-            st.addBatch(each);} //Herbir sql komutunu alıp torbaya atıyor.
-            st.executeBatch();  //O torbadakileri götürüp Database işliyor.
-             System.out.println("Satırlar eklendi");
+            for(String each : queries2){
+             st.addBatch(each);} //Herbir sql komutunu alıp torbaya atıyor.
+             st.executeBatch();  //O torbadakileri götürüp Database işliyor.
+              System.out.println("Satırlar eklendi");
 
-        /*======================================================================
-        İsciler tablosunu görüntüleyin.
-        =======================================================================*/
+          /*======================================================================
+          İsciler tablosunu görüntüleyin.
+           =======================================================================*/
          System.out.println("==============İsciler Tablosu===============");
          String SelectQuery="Select * from isciler";
          ResultSet iscilertablosu = st.executeQuery(SelectQuery);
           while(iscilertablosu.next()){
-              System.out.println(iscilertablosu.getInt(1)+ " " +iscilertablosu.getString(2)+ " " + iscilertablosu.getInt(3));}
+        System.out.println(iscilertablosu.getInt(1)+ " " +iscilertablosu.getString(2)+ " " + iscilertablosu.getInt(3));}
 
           /*=======================================================================
            ORNEK6: isciler tablosundaki maasi 5000'den az olan iscilerin maasina
@@ -107,13 +107,13 @@ public class JDBC02_execute_executeUpdate {
 
          System.out.println("==============İsciler Tablosu===============");
          String SelectQuery2="Select * from isciler";
-         ResultSet iscilertablosu2 = st.executeQuery(SelectQuery);
+         ResultSet iscilertablosu2 = st.executeQuery(SelectQuery2);
          while(iscilertablosu2.next()){
-             System.out.println(iscilertablosu.getInt(1)+ " " +iscilertablosu.getString(2)+ " " + iscilertablosu.getInt(3));}
+             System.out.println(iscilertablosu2.getInt(1)+ " " +iscilertablosu2.getString(2)+ " " + iscilertablosu2.getInt(3));}
 
-       /*=======================================================================
+         /*=======================================================================
          ORNEK8: Isciler tablosundan birimi 'ARGE' olan iscileri siliniz.
-        ========================================================================*/
+          ========================================================================*/
 
         String deleteQuery ="Delete from isciler where birim='ARGE' ";
         int silinen = st.executeUpdate(deleteQuery);
